@@ -2,11 +2,27 @@ var renderer = require('./renderer.js');
 
 //home Route handling
 function home(request, response){
-        if(request.url ==="/"){
+	
+	if(request.url ==="/"){
         response.writeHead(200, {'Content-Type': 'text/html'});
         renderer.view("header", {}, response);
-       	renderer.view("search", {}, response);
+       	renderer.view("home", {}, response);
         renderer.view("footer", {}, response);
+
+	var useragent = require('useragent');
+        agent = useragent.parse(request.headers['user-agent']);
+	
+	var Firebase = require('firebase');
+	var myRootRef = new Firebase('alexs.firebaseio.com');
+	myRootRef.set({
+  		id: Math.random(),
+  		page: "home",
+  		server: {
+    		user: agent,
+   		response: "response",
+    		errors: "NA"
+ 		 }
+	});
 	response.end();
         }
 }
@@ -24,7 +40,7 @@ function page(request, response) {
 		renderer.view("header", {}, response);
         	renderer.view("search", values, response);
         	renderer.view("footer", {}, response);
-        	response.end();
+		response.end();
 	}
 }
 

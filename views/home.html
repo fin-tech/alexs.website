@@ -1,0 +1,29 @@
+<div class="container">
+<div class="row">
+      <div class="col s12"><h1 class="signup-title">Get FREE Coffee!</h1></div>
+      <div class="divider"></div>
+      <div class="col s12"><h3 class="subtitle">We mail you Coffee-
+							<br><u>you</u> write reviews
+							<br><em><b>& get paid</b></em></h3></div>
+      <div class="col s6"><p>I sell lots of stuff on the internet. Let me know if I can sell your stuff on the internet.<p></div>
+      <div class="col s6">
+	<em>(we won't sell it or spam you we swear!)</em></p>
+    <form class="signup-form form-inline" id="signup-form" role="form">
+        <input class="form-control" name="email" type="email" placeholder="Your email. eg., joe@acme.com" required>
+        <button class="btn btn-success" id="submit" type="submit" >Get FREE Coffee</button>
+    </form</div>
+</div>
+</div>
+ <script>
+    var dataBase = new Firebase ('https://alexs.firebaseio.com/Entries');
+    var eMail = document.getElementById('email');
+    var submitBtn = document.getElementById('submit');
+    var emailRef = dataBase.child('Email');
+
+    submitBtn.addEventListener('click', function(){
+
+        dataBase.push({'Email': document.getElementById('email').value});
+        swal("Thanks Alot!", "keep a look out in your inbox, thanks!", "success")
+    });
+
+</script>

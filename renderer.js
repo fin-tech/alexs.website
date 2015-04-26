@@ -1,11 +1,12 @@
 var fs = require('fs');
 
+
 function mergeValues(values, content){
 	//Cycle over keys
 	for(var key in values){
 	
 	//get all the stuff outta values
-	content = content.replace("{{" + key + "}}", values[key]);
+	content = content.replace("{{" + key + "}}", values[key]);                  
 	}
 		//replace all keys with values
 	//return merged content
