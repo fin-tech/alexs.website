@@ -3,7 +3,7 @@ var renderer = require('./renderer.js');
 //home Route handling
 function home(request, response){
         if(request.url ==="/"){
-        response.writeHead(200, {'Content-Type': 'text/plain'});
+        response.writeHead(200, {'Content-Type': 'text/html'});
         renderer.view("header", {}, response);
        	renderer.view("search", {}, response);
         renderer.view("footer", {}, response);
@@ -18,11 +18,13 @@ function page(request, response) {
 	        //var hackernews = require('hacker-news');
         	//var frontPage = hackernews.news(callback);	
 		
-		response.writeHead(200, {'Content-Type': 'text/plain'});
-        	response.write("Header\n");
-        	response.write("Search\n");
-        	response.write(searchRequest+ "\n");
-		response.end("Footer\n");
+		response.writeHead(200, {'Content-Type': 'text/html'});
+        	//response.write(searchRequest+ "\n");
+        	var values={ search : searchRequest }	
+		renderer.view("header", {}, response);
+        	renderer.view("search", values, response);
+        	renderer.view("footer", {}, response);
+        	response.end();
 	}
 }
 
